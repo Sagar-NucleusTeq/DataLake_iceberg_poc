@@ -22,7 +22,9 @@ jobs:
         python-version: '3.x'
 
     - name: Install DBT
-      run: pip install dbt-core
+      run: |
+          pip install dbt-core
+          pip install dbt-glue
     
     - name: Dbt debug
       run: dbt debug
