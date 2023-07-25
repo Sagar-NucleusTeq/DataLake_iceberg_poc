@@ -1,0 +1,19 @@
+iceberg_with_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: glue
+      aws_profile_name: default
+      role_arn: arn:aws:iam::680736395115:role/dbt_glue_service_role
+      region: us-west-1
+      workers: 3
+      worker_type: G.1X
+      schema: staging_fast_sagar
+      database: staging_fast_sagar
+      session_provisioning_timeout_in_seconds: 120
+      location: "s3://aaa-poc-glue-data-us-west-1/iceberg"
+      connections: "dbt_glue_iceberg_connection"
+      iceberg_glue_commit_lock_table: "dbt-glue-locking-tbl"
+      conf: --conf spark.sql.catalog.glue_catalog.lock-impl=org.apache.iceberg.aws.glue.DynamoLockManager
+            --conf spark.sql.catalog.glue_catalog.lock.table=dbt-glue-locking-tbl
+            --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions

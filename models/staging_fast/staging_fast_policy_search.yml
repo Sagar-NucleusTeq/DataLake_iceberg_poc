@@ -1,0 +1,319 @@
+version: 2
+
+models:
+  - name: staging_fast_policy_search
+    description: " {{ doc('staging_fast_policy_search') }}
+
+
+    {{ doc('chuck_delatorre') }}"
+    meta:
+        needs_data_discovery: "True"
+    columns:
+      - name: id
+        meta:
+            needs_data_discovery: "True"
+      - name: policy_prefix
+        meta:
+            needs_data_discovery: "True"
+      - name: policy_number
+        description: "{{ doc('policy_number') }}"
+        meta:
+            needs_data_discovery: "False"
+        tests:
+          - unique
+          - not_null
+          - dbt_utils.at_least_one
+      - name: dtcc_distribution_transaction_id_number
+        meta:
+            needs_data_discovery: "True"
+      - name: policy_status
+        description: "{{ doc('contract_status') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: state_of_issue
+        description: "{{ doc('state_of_issue') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: issue_country
+        description: "{{ doc('country_of_issue') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: application_receive_date
+        meta:
+            needs_data_discovery: "True"
+      - name: application_date
+        description: "{{ doc('application_signed_date') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: qualified
+        meta:
+            needs_data_discovery: "True"
+      - name: roth_ira_inception_date
+        meta:
+            needs_data_discovery: "True"
+      - name: prod_model_id
+        meta:
+            needs_data_discovery: "True"
+      - name: line_of_business
+        meta:
+            needs_data_discovery: "True"
+      - name: company_id
+        meta:
+            needs_data_discovery: "True"
+      - name: exchange_type
+        meta:
+            needs_data_discovery: "True"
+      - name: has_pending_transaction
+        meta:
+            needs_data_discovery: "True"
+      - name: policy_effective_date
+        meta:
+            needs_data_discovery: "True"
+      - name: tamratestind
+        meta:
+            needs_data_discovery: "True"
+      - name: irc_7702_test
+        meta:
+            needs_data_discovery: "True"
+      - name: tsa
+        meta:
+            needs_data_discovery: "True"
+      - name: comm_option_type
+        meta:
+            needs_data_discovery: "True"
+      - name: comm_int_rate_type
+        meta:
+            needs_data_discovery: "True"
+      - name: fixed_index_mode
+        meta:
+            needs_data_discovery: "True"
+      - name: mode_rule
+        meta:
+            needs_data_discovery: "True"
+      - name: qualified_code
+        meta:
+            needs_data_discovery: "True"
+      - name: original_policy_number
+        meta:
+            needs_data_discovery: "True"
+      - name: certificate_suffix
+        meta:
+            needs_data_discovery: "True"
+      - name: resident_state
+        meta:
+            needs_data_discovery: "True"
+      - name: exchange_flag
+        meta:
+            needs_data_discovery: "True"
+      - name: brokerage_account
+        meta:
+            needs_data_discovery: "True"
+      - name: market_segment
+        meta:
+            needs_data_discovery: "True"
+      - name: special_market
+        meta:
+            needs_data_discovery: "True"
+      - name: contributor_type
+        meta:
+            needs_data_discovery: "True"
+      - name: policy_switch
+        meta:
+            needs_data_discovery: "True"
+      - name: plan_option
+        meta:
+            needs_data_discovery: "True"
+      - name: prevent_mec
+        meta:
+            needs_data_discovery: "True"
+      - name: application_sign_city
+        meta:
+            needs_data_discovery: "True"
+      - name: application_sign_state
+        meta:
+            needs_data_discovery: "True"
+      - name: membership_number
+        description: "{{ doc('membership_number') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: annuity_type
+        meta:
+            needs_data_discovery: "True"
+      - name: agent_matching
+        meta:
+            needs_data_discovery: "True"
+      - name: systematic_withdrawal
+        meta:
+            needs_data_discovery: "True"
+      - name: special_request
+        meta:
+            needs_data_discovery: "True"
+      - name: tia_90_days
+        meta:
+            needs_data_discovery: "True"
+      - name: tia_2_years
+        meta:
+            needs_data_discovery: "True"
+      - name: cash_on_hand
+        meta:
+            needs_data_discovery: "True"
+      - name: estimated_transfer_amount
+        meta:
+            needs_data_discovery: "True"
+      - name: free_look_period
+        meta:
+            needs_data_discovery: "True"
+      - name: application_type
+        meta:
+            needs_data_discovery: "True"
+      - name: replacement_percent
+        meta:
+            needs_data_discovery: "True"
+      - name: mode_of_settlement
+        meta:
+            needs_data_discovery: "True"
+      - name: exchange_basis_1035
+        meta:
+            needs_data_discovery: "True"
+      - name: exchange_premium_1035_ext
+        meta:
+            needs_data_discovery: "True"
+      - name: exchange_premium_1035_int
+        meta:
+            needs_data_discovery: "True"
+      - name: prior_mec_status
+        meta:
+            needs_data_discovery: "True"
+      - name: rate_lock_effective_date
+        meta:
+            needs_data_discovery: "True"
+      - name: product_cusip
+        meta:
+            needs_data_discovery: "True"
+      - name: free_look_end_date
+        meta:
+            needs_data_discovery: "True"
+      - name: free_look_start_date
+        meta:
+            needs_data_discovery: "True"
+      - name: last_processed_transaction_header_id
+        meta:
+            needs_data_discovery: "True"
+      - name: replacement_type
+        meta:
+            needs_data_discovery: "True"
+      - name: keycode
+        description: "{{ doc('keycode') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: club_fast_id
+        meta:
+            needs_data_discovery: "True"
+      - name: policy_company
+        description: "{{ doc('company_code') }}"
+        meta:
+            needs_data_discovery: "True"
+      - name: application_number
+        description: "{{ doc('application_number') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: lead_source_fast_id
+        meta:
+            needs_data_discovery: "True"
+      - name: entry_source_fast_id
+        meta:
+            needs_data_discovery: "True"
+      - name: membership_month
+        meta:
+            needs_data_discovery: "True"
+      - name: membership_year
+        meta:
+            needs_data_discovery: "True"
+      - name: membership_status
+        meta:
+            needs_data_discovery: "True"
+      - name: entity_status
+        meta:
+            needs_data_discovery: "True"
+      - name: display_field_name
+        meta:
+            needs_data_discovery: "True"
+
+      - name: plan_code
+        description: "{{ doc('plan_code') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: settled_date
+        description: "{{ doc('settled_date') }}"
+        meta:
+            needs_data_discovery: "True"
+#         TODO: Any policy with an inforce or terminated status should have a settled date
+      - name: issue_date
+        meta:
+            needs_data_discovery: "True"
+      - name: modal_premium
+        description: "{{ doc('modal_premium') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: face_amount
+        description: "{{ doc('face_amount') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: gender
+        description: "{{ doc('sex_at_issue') }}"
+        meta:
+            needs_data_discovery: "False"
+#        TODO: Add this test back in once FAST fixes the null gender records in policy_search.
+#        FAST needs to let us know why nulls are coming through on the automated files.
+#        TODO: add test for accepted values once we know what all of the accepted values are
+#        right now we're waiting on FAST to finish answering our questions on these
+#        tests:
+#          - not_null
+#          - accepted_values:
+#              values: ['Female', 'Male', 'Unisex', 'Unknown']
+      - name: payment_type
+        description: "{{ doc('payment_type') }}"
+        meta:
+            needs_data_discovery: False
+      - name: billing_mode
+        description: "{{ doc('billing_mode') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: termination_date
+        description: "{{ doc('termination_date') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: age_at_issue
+        description: "{{ doc('age_at_issue') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: plan_code_original
+        description: "{{ doc('plan_code_original') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: user_id
+        meta:
+            needs_data_discovery: "True"
+      - name: paid_to_date
+        description: "{{ doc('paid_to_date') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: risk_class
+        description: "{{ doc('risk_class') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: units_of_insurance
+        description: "{{ doc('units_of_insurance') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: timestamp
+        meta:
+            needs_data_discovery: "True"
+      - name: loaded_at
+        description: "{{ doc('loaded_at') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: last_refreshed_at
+        description: "{{ doc('last_refreshed_at') }}"
+        meta:
+            needs_data_discovery: "False"

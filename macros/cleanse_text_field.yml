@@ -1,0 +1,19 @@
+version: 2
+
+macros:
+  - name: cleanse_text_field
+    description: "{{ doc('cleanse_text_field') }}
+
+
+    {{ doc('carrie_kaufmann') }}"
+    docs:
+      show: true
+    arguments:
+      - name: model_name
+        type: string
+        description: "Enter the name of the model here - no quotes or curly brackets if
+                      using jinja ref or source - single quotes for CTE references. More information
+                      on this in the model description!"
+      - name: column_name
+        type: string
+        description: "Enter the name of the column here - in single quotes"
