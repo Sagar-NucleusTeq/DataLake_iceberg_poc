@@ -1,4 +1,4 @@
-iceberg_with_dbt:
+DataLake_iceberg_poc:
   target: dev
   outputs:
     dev:
