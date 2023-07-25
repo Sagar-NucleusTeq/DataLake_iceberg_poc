@@ -3,10 +3,11 @@ iceberg_with_dbt:
   outputs:
     dev:
       type: glue
-      aws_profile_name: default
+      aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       role_arn: arn:aws:iam::680736395115:role/dbt_glue_service_role
       region: us-west-1
-      workers: 3
+      workers: 5
       worker_type: G.1X
       schema: staging_fast_sagar
       database: staging_fast_sagar

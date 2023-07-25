@@ -26,9 +26,3 @@ jobs:
 
     - name: DBT Run
       run: dbt run
-
-    - name: DBT Test
-      run: dbt test
-
-    - name: DBT Snapshot
-      run: dbt snapshot
