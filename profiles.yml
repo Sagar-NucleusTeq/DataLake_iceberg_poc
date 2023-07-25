@@ -3,8 +3,8 @@ DataLake_iceberg_poc:
   outputs:
     dev:
       type: glue
-      aws_access_key_id: "${{ secrets.AWS_ACCESS_KEY_ID }}"
-      aws_secret_access_key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+      aws_access_key_id: "{{ env_var('AWS_ACCESS_KEY_ID') }}"
+      aws_secret_access_key: "{{ env_var('AWS_SECRET_ACCESS_KEY') }}"
       role_arn: arn:aws:iam::680736395115:role/dbt_glue_service_role
       region: us-west-1
       workers: 5
