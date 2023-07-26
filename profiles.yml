@@ -9,12 +9,9 @@ DataLake_iceberg_poc:
       region: us-west-1
       workers: 5
       worker_type: G.1X
-      schema: staging_fast_sagar
-      database: staging_fast_sagar
-      session_provisioning_timeout_in_seconds: 120
-      location: "s3://aaa-poc-glue-data-us-west-1/iceberg"
-      connections: "dbt_glue_iceberg_connection"
-      iceberg_glue_commit_lock_table: "dbt-glue-locking-tbl"
-      conf: --conf spark.sql.catalog.glue_catalog.lock-impl=org.apache.iceberg.aws.glue.DynamoLockManager
-            --conf spark.sql.catalog.glue_catalog.lock.table=dbt-glue-locking-tbl
-            --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions
+      schema: staging_fast_gitactions
+      database: staging_fast_gitactions
+      session_provisioning_timeout_in_seconds: 500
+      location: "s3://aaa-poc-glue-data-us-west-1/hudi"
+      connections: "dbt_glue_hudi_connection"
+      conf: "spark.serializer=org.apache.spark.serializer.KryoSerializer"

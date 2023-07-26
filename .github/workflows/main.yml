@@ -3,7 +3,7 @@ name: DBT Workflow
 on:
   push:
     branches:
-      - DF-263/git_actions_with_dbt
+      - DF-263/git_actions_with_DBT_Hudi
 
 jobs:
   dbt_job:
@@ -24,8 +24,8 @@ jobs:
     - name: Install DBT
       run: |
           pip install pytz
-          pip install dbt-core==1.4.2
-          pip install dbt-glue==1.4.23
+          pip install dbt-core==1.3.2
+          pip install dbt-glue==1.3.12
     
     - name: Dbt debug
       run: dbt debug
@@ -33,4 +33,3 @@ jobs:
     - name: DBT Run
       run: dbt run
 
-      

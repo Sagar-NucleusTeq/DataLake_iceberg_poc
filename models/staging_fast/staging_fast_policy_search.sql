@@ -1,17 +1,12 @@
 {{ config(
-    alias='policy_search_iceberg',
     materialized='incremental',
-    incremental_strategy='merge',
-    unique_key = ['policy_number'],
-    dist='all',
-    file_format='iceberg',
-    iceberg_expire_snapshots='False',
-    partition_by = ['billing_mode','plan_code','gender'],
-    table_properties={
-    'write.target-file-size-bytes': '268435456',
-    'format-version': '2'
-    }
+    alias='policy_search_db_hudi_dup',
+    incremental_strategy = 'merge',
+    partition_by=['billing_mode'],
+    file_format='hudi',
+    unique_key='id'
 ) }}
+
 
 
 SELECT
