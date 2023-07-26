@@ -24,8 +24,8 @@ jobs:
     - name: Install DBT
       run: |
           pip install pytz
-          pip install dbt-core==1.4.2
-          pip install dbt-glue==1.4.23
+          pip install dbt-core==1.4.0
+          pip install dbt-glue==1.4.0
     
     - name: Dbt debug
       run: dbt debug
