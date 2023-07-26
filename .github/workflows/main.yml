@@ -26,6 +26,7 @@ jobs:
           pip install pytz
           pip install dbt-core==1.4.0
           pip install dbt-glue==1.4.0
+          pip install dbt-spark==1.4.5
     
     - name: Dbt debug
       run: dbt debug
