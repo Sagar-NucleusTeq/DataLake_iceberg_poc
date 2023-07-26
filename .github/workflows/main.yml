@@ -19,16 +19,19 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: '3.9'
 
     - name: Install DBT
       run: |
           pip install pytz
-          pip install dbt-core==1.4.2
-          pip install dbt-glue==1.4.23
+          pip install dbt-core==1.3.2
+          pip install dbt-glue==1.3.12
     
     - name: Dbt debug
       run: dbt debug
+
+    - name: Dbt Snapshot
+      run: dbt snapshot
 
     - name: DBT Run
       run: dbt run
