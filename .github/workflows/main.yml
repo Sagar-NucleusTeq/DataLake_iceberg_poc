@@ -31,3 +31,6 @@ jobs:
 
     - name: DBT Run
       run: dbt run
+
+    - name: DBT Snapshot
+      run: dbt snapshot
