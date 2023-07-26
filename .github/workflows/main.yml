@@ -33,7 +33,7 @@ jobs:
     - name: Dbt Snapshot
       run: dbt snapshot
 
-    - name: DBT Run
-      run: dbt run
+    # - name: DBT Run
+    #   run: dbt run
 
       
