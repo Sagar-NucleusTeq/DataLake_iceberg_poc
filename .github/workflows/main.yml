@@ -30,8 +30,9 @@ jobs:
     - name: Dbt debug
       run: dbt debug
 
-    - name: Dbt Seeds
-      run: dbt seed
+    - name: dbt Seed
+      run: |
+        dbt seed  # Execute the dbt seed command
 
     # - name: DBT Run
     #   run: dbt run
