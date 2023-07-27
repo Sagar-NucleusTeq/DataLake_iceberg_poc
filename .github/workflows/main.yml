@@ -30,8 +30,8 @@ jobs:
     - name: Dbt debug
       run: dbt debug
 
-    - name: Dbt snapshot
-      run: dbt snapshot
+    - name: Dbt Seeds
+      run: dbt seed
 
     # - name: DBT Run
     #   run: dbt run
