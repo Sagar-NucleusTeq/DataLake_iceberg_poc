@@ -4,7 +4,9 @@
 <a name="sex_at_issue"></a>
 # Sex At Time of Issue
 
-This is the biological sex of the insured at the time of application.
+This is the sex of the insured at the time of application as used in underwriting. This most closely aligns with 
+biological sex, but there are differences depending on state regulations. For example, in some states all transgender
+individuals are considered "unisex" for underwriting rather than their biological sex.
                                             
 | Code |     Sex     | Notes |
 | ---- | ----------- | ----- |
@@ -19,7 +21,7 @@ This is the biological sex of the insured at the time of application.
 |     |     |
 | --- | --- |
 | Security Classification: | Internal |
-| Usage Requirement:       | Deidentified |
+| Usage Requirement:       | PII |
 
 {% endraw %}
 {% enddocs %}
@@ -45,7 +47,7 @@ This is the last recorded sex of the client in the Lifeplus system.
 |     |     |
 | --- | --- |
 | Security Classification: | Internal |
-| Usage Requirement:       | Deidentified |
+| Usage Requirement:       | PII |
 
 {% endraw %}
 {% enddocs %}

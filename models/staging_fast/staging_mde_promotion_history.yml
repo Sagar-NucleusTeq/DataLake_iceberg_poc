@@ -1,0 +1,557 @@
+ version: 2
+
+models:
+  - name: staging_mde_promotion_history
+    description: "{{ doc('staging_mde_promotion_history') }}
+
+
+    {{ doc('keely_ledbetter') }}"
+    meta:
+        needs_data_discovery: "True"
+    columns:
+      - name: broadlog_id
+        description: "{{ doc('broadlog_id') }}"
+        tests:
+          - unique
+          - not_null
+          - dbt_utils.at_least_one
+        meta:
+            needs_data_discovery: "False"
+      - name: zip_code
+        description: "{{ doc('promotion_zip') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: zip_plus_4
+        description: "{{ doc('promotion_zip_plus_4') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: wave_id
+        description: "{{ doc('wave_sequence_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: vendor_code
+        description: "{{ doc('promotion_vendor_code') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: variant_id
+        description: "{{ doc('variant_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: us_carrier_route
+        meta:
+            needs_data_discovery: "True"
+      - name: updated_at
+        meta:
+            needs_data_discovery: "True"
+      - name: update_process_log_id
+        description: "{{ doc('update_process_log_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: transaction_id
+        meta:
+            needs_data_discovery: "True"
+      - name: touchpoint
+        meta:
+            needs_data_discovery: "True"
+      - name: touch_id
+        description: "{{ doc('touch_id') }}"
+        tests:
+          - not_null
+          #- must exist in touch table, not on jim yet.
+        meta:
+            needs_data_discovery: "False"
+      - name: tactic_id
+        description: "{{ doc('tactic_id') }}"
+        tests:
+          - not_null:
+              where: "channel_id='3'"
+#          - exists in tactic table, not on jim yet
+        meta:
+            needs_data_discovery: "False"
+      - name: suffix
+        meta:
+            needs_data_discovery: "True"
+      - name: subject_line
+        meta:
+           needs_data_discovery: "True"
+      - name: status_description
+        meta:
+            needs_data_discovery: "True"
+      - name: status
+        description: "{{ doc('promotion_status_code') }}"
+        tests:
+          - accepted_values:
+              values: ['0','1','2','6']
+        meta:
+            needs_data_discovery: "False"
+      - name: state
+        description: "{{ doc('promotion_state') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: serial_id
+        description: "{{ doc('promotion_serial_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: segment_code
+        meta:
+            needs_data_discovery: "True"
+      - name: seed
+        meta:
+            needs_data_discovery: "True"
+      - name: rpt_mail_date
+        meta:
+            needs_data_discovery: "True"
+      - name: row_check_value
+        meta:
+            needs_data_discovery: "True"
+      - name: resident_member_number
+        meta:
+            needs_data_discovery: "True"
+      - name: resident_club_code
+        meta:
+            needs_data_discovery: "True"
+      - name: record_id
+        description: "{{ doc('record_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: recipient_id
+        meta:
+            needs_data_discovery: "True"
+      - name: qcode
+        meta:
+            needs_data_discovery: "True"
+      - name: program_name
+        meta:
+            needs_data_discovery: "True"
+      - name: program_id
+        meta:
+            needs_data_discovery: "True"
+      - name: product_name
+        meta:
+            needs_data_discovery: "True"
+      - name: product_id
+        meta:
+            needs_data_discovery: "True"
+      - name: plan_name
+        meta:
+            needs_data_discovery: "True"
+      - name: plan_code
+        description: "{{ doc('plan_code_promotion_history') }}"
+        tests:
+##      Set of kit requests has null plan codes, issue is being investigated and is logged in Gitlab.
+          - not_null:
+              where: "channel_id='3' AND broadlog_id NOT IN ('629292366','629292367','629292368'
+                                                            ,'629292369','629292370','629292371'
+                                                            ,'629292372','629292373','629292374'
+                                                            ,'629292375','629292376','629292377'
+                                                            ,'629292378','629292379','629292380'
+                                                            ,'629292381')"
+              # TODO: Remove when product hierarchy updated
+              severity: warn
+          - relationships:
+              to: ref('staging_mde_product_hierarchy')
+              field: plan_code
+        meta:
+            needs_data_discovery: "False"
+      - name: personalization
+        meta:
+            needs_data_discovery: "True"
+      - name: package_id
+        description: "{{ doc('promotion_package_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: original_source
+        meta:
+            needs_data_discovery: "True"
+      - name: offer_touch_id
+        meta:
+            needs_data_discovery: "True"
+      - name: offer_id
+        description: "{{ doc('offer_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: offer_end_date
+        meta:
+            needs_data_discovery: "True"
+      - name: model_term_broadmarket_version
+        meta:
+            needs_data_discovery: "True"
+      - name: model_term_broadmarket_scoring_date
+        meta:
+            needs_data_discovery: "True"
+      - name: model_term_broadmarket_mille
+        meta:
+            needs_data_discovery: "True"
+      - name: model_term_broadmarket_id
+        meta:
+            needs_data_discovery: "True"
+      - name: model_term_broadmarket_score
+        meta:
+            needs_data_discovery: "True"
+      - name: model_offer_segment_score
+        meta:
+           needs_data_discovery: "True"
+      - name: model_offer_segment_version
+        meta:
+            needs_data_discovery: "True"
+      - name: model_offer_segment_scoring_date
+        meta:
+            needs_data_discovery: "True"
+      - name: model_offer_segment_mille
+        meta:
+            needs_data_discovery: "True"
+      - name: model_offer_segment_id
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_version
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_scoring_date
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_score
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_mille
+        description: "{{ doc('promotion_mille') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: model_member_term_id
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_ace_version
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_ace_scoring_date
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_ace_score
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_ace_mille
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_term_ace_id
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_mlta_version
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_mlta_scoring_date
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_mlta_score
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_mlta_mille
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_mlta_id
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_giwl_version
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_giwl_scoring_date
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_giwl_score
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_giwl_mille
+        meta:
+            needs_data_discovery: "True"
+      - name: model_member_giwl_id
+        meta:
+            needs_data_discovery: "True"
+      - name: model_giwl_broadmarket_version
+        meta:
+            needs_data_discovery: "True"
+      - name: model_giwl_broadmarket_scoring_date
+        meta:
+           needs_data_discovery: "True"
+      - name: model_giwl_broadmarket_mille
+        meta:
+            needs_data_discovery: "True"
+      - name: model_giwl_broadmarket_id
+        meta:
+            needs_data_discovery: "True"
+      - name: model_giwl_broadmarket_score
+        meta:
+            needs_data_discovery: "True"
+      - name: model_ace_agent_sold_version
+        meta:
+            needs_data_discovery: "True"
+      - name: model_ace_agent_sold_scoring_date
+        meta:
+            needs_data_discovery: "True"
+      - name: model_ace_agent_sold_score
+        meta:
+            needs_data_discovery: "True"
+      - name: model_ace_agent_sold_mille
+        meta:
+            needs_data_discovery: "True"
+      - name: model_ace_agent_sold_id
+        meta:
+            needs_data_discovery: "True"
+      - name: milliman_bucket_score
+        description: "{{ doc('promotion_milliman_bucket_score') }}"
+        tests:
+          - accepted_values:
+              values: [null, '0','1','2','3','4']
+        meta:
+            needs_data_discovery: "False"
+      - name: middle_name
+        meta:
+            needs_data_discovery: "True"
+      - name: member_loyalty_years
+        meta:
+            needs_data_discovery: "True"
+      - name: member_join_date
+        meta:
+            needs_data_discovery: "True"
+      - name: mail_date
+        description: "{{ doc('mail_date') }}"
+        tests:
+          - not_null:
+              where: "channel_id='3'"
+#          - matches touch start date, touch table not on jim yet
+        meta:
+            needs_data_discovery: "False"
+      - name: loaded_at
+        description: "{{ doc('loaded_at') }}"
+        meta:
+            needs_data_discovery: "False"
+        tests:
+          - not_null
+      - name: lexus_nexus_score
+        meta:
+            needs_data_discovery: "True"
+      - name: lead_source_code
+        meta:
+            needs_data_discovery: "True"
+      - name: last_name
+        meta:
+            needs_data_discovery: "True"
+      - name: keycode
+        description: "{{ doc('keycode') }}"
+        tests:
+          - not_null:
+              where: "channel_id='3'"
+        meta:
+            needs_data_discovery: "False"
+      - name: initiative_id
+        description: "{{ doc('initiative_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: individual_summary_create_date
+        meta:
+            needs_data_discovery: "True"
+      - name: individual_key
+        description: "{{ doc('individual_key') }}"
+        tests:
+          - not_null
+        meta:
+            needs_data_discovery: "False"
+      - name: household_milliman_bucket_score
+        description: "{{ doc('promotion_hh_milliman_bucket_score') }}"
+        tests:
+        - accepted_values:
+            values: [null, '0','1','2','3','4']
+        meta:
+            needs_data_discovery: "False"
+      - name: gender
+        description: "{{ doc('promotion_gender') }}"
+        tests:
+          - not_null:
+              where: "channel_id='3'
+                      and campaign_label <> 'Kit Request'"
+              severity: warn
+          - accepted_values:
+              values: ['M','F','U']
+        meta:
+            needs_data_discovery: "False"
+      - name: form_description
+        meta:
+            needs_data_discovery: "True"
+      - name: folder
+        meta:
+            needs_data_discovery: "True"
+      - name: first_name
+        meta:
+            needs_data_discovery: "True"
+      - name: finder_number
+        description: "{{ doc('finder_number') }}"
+        tests:
+          - not_null:
+              where: "channel_id='3'"
+          ## The below test attempts to identify two types of known finder number errors:
+          ## 1) C7 2019 (tactic 69 and 70) had duplicates across products that cannot be fixed.
+          ## 2) Newly introduced duplicate finder numbers.
+          ## The model specified in the test contains currently known issues that
+          ## Merkle has yet to resolve. Issue logged in Gitlab.
+          ## If the test fails, please contact Brittany Spencer and Lisa Sultana-Bogacki.
+          ## Process Details: https://aaalife-data.atlassian.net/wiki/spaces/HAN/pages/10744659988/Promotion+History+Corrections+Automation
+          - unique:
+              where: "tactic_id NOT IN (69, 70)
+                      AND finder_number NOT IN (SELECT
+                                                finder_number
+                                                FROM
+                                                  staging_dsse.promotion_history_duplicate_finder_number)"
+        meta:
+            needs_data_discovery: "False"
+      - name: file_name
+        meta:
+            needs_data_discovery: "True"
+      - name: file_id
+        description: "{{ doc('file_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: failure_type
+        meta:
+            needs_data_discovery: "True"
+      - name: failure_text
+        meta:
+            needs_data_discovery: "True"
+      - name: failure_reason_description
+        meta:
+            needs_data_discovery: "True"
+      - name: failure_reason_code
+        meta:
+            needs_data_discovery: "True"
+      - name: event_date
+        description: "{{ doc('event_date') }}"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+        meta:
+            needs_data_discovery: "False"
+      - name: email_addr
+        meta:
+            needs_data_discovery: "True"
+      - name: digital_campaign_code
+        description: "{{ doc('digital_campaign_code') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: depromotion_date
+        description: "{{ doc('depromotion_date') }}"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+        meta:
+            needs_data_discovery: "False"
+      - name: delivery_name
+        meta:
+            needs_data_discovery: "True"
+      - name: delivery_label
+        meta:
+            needs_data_discovery: "True"
+      - name: delivery_id
+        meta:
+            needs_data_discovery: "True"
+      - name: delivery_contact_date
+        description: "{{ doc('delivery_contact_date') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: delivery_code
+        meta:
+            needs_data_discovery: "True"
+      - name: date_of_birth
+        meta:
+            needs_data_discovery: "True"
+      - name: creative_notes
+        meta:
+            needs_data_discovery: "True"
+      - name: creative_id
+        description: "{{ doc('touch_creative_id') }}"
+        tests:
+          - not_null:
+              where: "channel_id='3'"
+          - relationships:
+              to: ref('staging_mde_campaign_creative_package')
+              field: creative_id
+              where: "channel_id = '3'"
+              config:
+                severity: warn
+        meta:
+            needs_data_discovery: "False"
+      - name: create_process_log_id
+        meta:
+            needs_data_discovery: "True"
+      - name: create_date
+        meta:
+            needs_data_discovery: "True"
+      - name: club_member_custom_id
+        meta:
+            needs_data_discovery: "True"
+      - name: club_code
+        meta:
+            needs_data_discovery: "True"
+      - name: city
+        description: "{{ doc('promotion_city') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: channel_id
+        description: "{{ doc('marketing_channel_id') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: cell_segment
+        meta:
+            needs_data_discovery: "True"
+      - name: cell_name
+        description: "{{ doc('cell_name') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: cell_id
+        description: "{{ doc('cell_id') }}"
+        tests:
+          - not_null
+          #- must exist in the cell table, not on jim yet
+        meta:
+            needs_data_discovery: "False"
+      - name: campaign_type
+        meta:
+            needs_data_discovery: "True"
+      - name: campaign_name
+        meta:
+            needs_data_discovery: "True"
+      - name: campaign_label
+        description: "{{ doc('campaign_label') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: campaign_id
+        meta:
+            needs_data_discovery: "True"
+      - name: barcode_version
+        meta:
+            needs_data_discovery: "True"
+      - name: application_form_number
+        meta:
+            needs_data_discovery: "True"
+      - name: age
+        description: "{{ doc('age_at_promotion') }}"
+        tests:
+          - not_null:
+              where: "channel_id=3"
+              severity: warn
+        meta:
+            needs_data_discovery: "False"
+      - name: adobe_address
+        meta:
+            needs_data_discovery: "True"
+      - name: address_key
+        description: "{{ doc('connected_recognition_address_key') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: address_line_2
+        meta:
+            needs_data_discovery: "True"
+      - name: address_line_1
+        meta:
+            needs_data_discovery: "True"
+      - name: last_refreshed_at
+        description: "{{ doc('last_refreshed_at') }}"
+        meta:
+            needs_data_discovery: "False"
+        tests:
+          - not_null
