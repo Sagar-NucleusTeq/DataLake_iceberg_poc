@@ -1,0 +1,33 @@
+version: 2
+
+seeds:
+  - name: product_mapping
+    description: "{{ doc('product_mapping') }}
+
+    {{ doc('naomi_hernandez') }}"
+
+    metadata:
+      needs_data_discovery: False
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - tactic_name
+            - effective_date
+
+    columns:
+      - name: tactic_name
+        description: "{{ doc('tactic_name') }}"
+        tests:
+          - not_null
+          - dbt_utils.at_least_one
+      - name: product_group
+        description: "{{ doc('product_group') }}"
+        tests:
+          - not_null
+      - name: effective_date
+        description: "{{ doc('effective_date') }}"
+        tests:
+          - not_null
+      - name: expiration_date
+        description: "{{ doc('expiration_date') }}"

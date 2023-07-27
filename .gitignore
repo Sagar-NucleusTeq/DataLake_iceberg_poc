@@ -3,6 +3,5 @@ target/
 analyses/
 dbt_packages/
 logs/
-seeds/
 snapshots/
 tests/
