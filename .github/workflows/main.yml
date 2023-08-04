@@ -26,13 +26,10 @@ jobs:
           pip install pytz
           pip install dbt-core==1.3.2
           pip install dbt-glue==1.3.12
-    
-    - name: Dbt debug
-      run: dbt debug
-
-    - name: dbt Seed
-      run: |
-        dbt seed  # Execute the dbt seed command
+          dbt debug
+          dbt seed
+          dbt snapshot
+          dbt run
 
     # - name: DBT Run
     #   run: dbt run
