@@ -1,0 +1,237 @@
+version: 2
+
+models:
+  - name: staging_metadata_metadata
+    description: "{{ doc('staging_metadata_metadata') }}
+
+
+    {{ doc('carrie_kaufmann') }}"
+    meta:
+        needs_data_discovery: False
+    tests:
+      - unique:
+          column_name: "touch_id"
+    columns:
+      - name: touch_id
+        description: "{{ doc('touch_id') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+          - dbt_utils.at_least_one
+
+      - name: touch_name
+        description: "{{ doc('touch_name') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: touch_description
+        description: "{{ doc('touch_description') }}"
+
+      - name: touch_start_date
+        description: "{{ doc('touch_start_date') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: touch_end_date
+        description: "{{ doc('touch_end_date') }}"
+
+      - name: touch_reply_by_date
+        description: "{{ doc('touch_reply_by_date') }}"
+
+      - name: offer_id
+        description: "{{ doc('offer_id') }}"
+
+      - name: offer_name
+        description: "{{ doc('offer_name') }}"
+
+      - name: keycode_type
+        description: "{{ doc('keycode_type') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: marketing_subchannel_id
+        description: "{{ doc('marketing_subchannel_id') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: marketing_subchannel_name
+        description: "{{ doc('marketing_subchannel_name') }}"
+        tests:
+
+      - name: marketing_channel_id
+        description: "{{ doc('marketing_channel_id') }}"
+
+      - name: marketing_channel_name
+        description: "{{ doc('marketing_channel_name') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: creative_id
+        description: "{{ doc('creative_id') }}"
+
+      - name: creative_name
+        description: "{{ doc('creative_name') }}"
+
+      - name: variant_id
+        description: "{{ doc('variant_id') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: variant_name
+        description: "{{ doc('variant_name') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: variant_description
+        description: "{{ doc('variant_description') }}"
+
+      - name: keycode_10th_position
+        description: "{{ doc('keycode_10th_position') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: variant_population_split
+        description: "{{ doc('variant_population_split') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: cell_id
+        description: "{{ doc('cell_id') }}"
+
+      - name: cell_name
+        description: "{{ doc('cell_name') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: cell_description
+        description: "{{ doc('cell_description') }}"
+
+      - name: selection_group_id
+        description: "{{ doc('selection_group_id') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: selection_group_name
+        description: "{{ doc('selection_group_name') }}"
+
+      - name: selection_parameters_name
+        description: "{{ doc('selection_parameters_name') }}"
+
+      - name: tactic_id
+        description: "{{ doc('tactic_id') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: tactic_name
+        description: "{{ doc('tactic_name') }}"
+
+      - name: tactic_description
+        description: "{{ doc('tactic_description') }}"
+
+      - name: tactic_start_date
+        description: "{{ doc('tactic_start_date') }}"
+
+      - name: tactic_type_name
+        description: "{{ doc('tactic_type_name') }}"
+
+      - name: cross_sell_keycode_value
+        description: "{{ doc('cross_sell_keycode_value') }}"
+
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+
+      - name: campaign_name
+        description: "{{ doc('campaign_name') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: campaign_number
+        description: "{{ doc('campaign_number') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail' AND tactic_type_name NOT LIKE '%Kit Request%'"
+
+      - name: campaign_description
+        description: "{{ doc('campaign_description') }}"
+
+      - name: campaign_start_date
+        description: "{{ doc('campaign_start_date') }}"
+
+      - name: campaign_end_date
+        description: "{{ doc('campaign_end_date') }}"
+
+      - name: campaign_finance_year
+        description: "{{ doc('campaign_finance_year') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: campaign_finance_month
+        description: "{{ doc('campaign_finance_month') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: campaign_keycode_campaign_number
+        description: "{{ doc('campaign_keycode_campaign_number') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: initiative_id
+        description: "{{ doc('initiative_id') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: initiative_description
+        description: "{{ doc('initiative_description') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: initiative_start_date
+        description: "{{ doc('initiative_start_date') }}"
+
+      - name: initiative_end_date
+        description: "{{ doc('initiative_end_date') }}"
+
+      - name: marketing_program_id
+        description: "{{ doc('marketing_program_id') }}"
+
+      - name: marketing_program_name
+        description: "{{ doc('marketing_program_name') }}"
+        tests:
+          - not_null:
+              where: "marketing_subchannel_name = 'Mail'"
+
+      - name: marketing_program_description
+        description: "{{ doc('marketing_program_description') }}"
+
+      - name: file_name
+        description: "{{ doc('file_name') }}"
+        tests:
+          - not_null
+
+      - name: loaded_at
+        description: "{{ doc('loaded_at') }}"
+        tests:
+          - not_null
+
+      - name: last_refreshed_at
+        description: "{{ doc('last_refreshed_at') }}"
+        tests:
+          - not_null

@@ -36,7 +36,3 @@ models:
     staging_fast:
       +materialized: table
 
-seeds:
-  +schema: landing_dsse_seed
-  +tags:
-    - "seed_path"

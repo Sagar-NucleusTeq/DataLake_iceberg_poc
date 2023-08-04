@@ -1,12 +1,12 @@
 {{ config(
-    alias='policy_search_iceberg',
+    alias='policy_search',
     materialized='incremental',
     incremental_strategy='merge',
-    unique_key = ['policy_number'],
+    unique_key=['policy_number'],
     dist='all',
     file_format='iceberg',
     iceberg_expire_snapshots='False',
-    partition_by = ['billing_mode','plan_code','gender'],
+    partition_by = ['plan_code'],
     table_properties={
     'write.target-file-size-bytes': '268435456',
     'format-version': '2'
@@ -96,8 +96,7 @@ SELECT
   DATE(DATE_FORMAT(issuedate, 'MM/dd/yyyy')) AS issue_date,
   ROUND(CAST(modalpremium AS DECIMAL), 0) AS modal_premium,
   CAST(faceamount AS INTEGER) AS face_amount,
-  {{ cleanse_text_field(source('fast','policy_search'),'gender') }}
-                                                      AS gender,
+  {{ cleanse_text_field(source('fast','policy_search'),'gender') }} AS gender,
   {{ cleanse_text_field(source('fast','policy_search'),'billingmethod') }} AS payment_type,
   {{ cleanse_text_field(source('fast','policy_search'),'billingmode') }}
   AS billing_mode,

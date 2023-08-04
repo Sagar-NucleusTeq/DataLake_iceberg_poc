@@ -1,0 +1,65 @@
+version: 2
+
+sources:
+  - name: metadata
+    description: "{{ doc('metadata') }}"
+    schema: landing_mde
+    tables:
+      - name: metadata
+        tests:
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: [ "touch_id",
+                             "touch_name",
+                             "touch_description",
+                             "touch_start_date",
+                             "touch_end_date",
+                             "touch_reply_by_date",
+                             "offer_id",
+                             "offer_name",
+                             "keycode_type",
+                             "sub_channel_id",
+                             "sub_channel_name",
+                             "marketing_channel_id",
+                             "marketing_channel_name",
+                             "creative_id",
+                             "creative_name",
+                             "variant_id",
+                             "variant_name",
+                             "variant_desc",
+                             "keycode_10th_position_byte",
+                             "variant_population_split",
+                             "cell_id",
+                             "cell_name",
+                             "cell_description",
+                             "selection_group_id",
+                             "selection_group_name",
+                             "selection_parameters_name",
+                             "tactic_id",
+                             "tactic_name",
+                             "tactic_description",
+                             "tactic_start_date",
+                             "tactic_type_name",
+                             "cross_sell_keycode_value",
+                             "campaign_id",
+                             "campaign_name",
+                             "campaign_number",
+                             "campaign_description",
+                             "campaign_start_date",
+                             "campaign_end_date",
+                             "finance_year",
+                             "finance_month",
+                             "campaign_keycode_camp_number",
+                             "initiative_id",
+                             "initiative_description",
+                             "initiative_start_date",
+                             "initiative_end_date",
+                             "marketing_program_id",
+                             "marketing_program_name",
+                             "marketing_program_description",
+                             "file_name",
+                             "load_timestamp",
+                             "campaign_number_new"
+              ]
+        meta:
+            automated: "Yes"
+            refreshed: "Daily at 4:00 AM EST"

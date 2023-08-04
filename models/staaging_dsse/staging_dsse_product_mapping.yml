@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: staging_dsse_product_mapping
+    description: " {{ doc('staging_dsse_product_mapping') }}
+
+    {{ doc('naomi_hernandez') }}"
+    meta:
+        needs_data_discovery: False
+    config:
+      tags: 'seed_path'
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - tactic_name
+            - effective_date
+    columns:
+      - name: tactic_name
+        description: "{{ doc('tactic_name') }}"
+        tests:
+          - not_null
+          - dbt_utils.at_least_one
+      - name: product_group
+        description: "{{ doc('product_group') }}"
+        tests:
+      - name: effective_date
+        description: "{{ doc('effective_date') }}"
+        tests:
+      - name: expiration_date
+        description: "{{ doc('expiration_date') }}"
+      - name: loaded_at
+        description: "{{ doc('loaded_at') }}"
+        tests:
+          - not_null
+      - name: last_refreshed_at
+        description: "{{ doc('last_refreshed_at') }}"
+        tests:
+          - not_null

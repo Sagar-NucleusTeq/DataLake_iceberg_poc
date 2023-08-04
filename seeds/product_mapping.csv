@@ -1,30 +1,30 @@
 tactic_name,product_group,effective_date,expiration_date
-Accident Merkury Trigger - Non-Member,Accident,9/1/2022,None
-GIWL Merkury Trigger,GIWL,9/1/2022,None
-Direct Mail Member Term Merkury Trigger,Term,9/1/2022,None
-MLTA Lapsed Non-Complete (MLTALCS) Trigger,Accident,9/1/2022,None
-Direct Mail Member Term - Remark,Term,8/5/2022,None
-Direct Mail Member Term Cross-Sell (D TERMCS),Term,12/28/2020,None
-Direct Mail Member Term - Random,Term,1/21/2022,None
-MLTA Member 5 Year (MLTA_5YR),Accident,1/1/2020,None
-MLTA Member,Accident,1/1/2020,None
-MLTA Lapsed Non-Complete (MLTALCS),Accident,1/1/2020,None
-MLTA Cross-Sell (MLTACS),Accident,1/1/2020,None
-Individual Direct Term Non-Member ACE,Term,1/1/2020,None
-Individual Direct Term Non-Member,Term,1/1/2020,None
-GIWL to Term Declined (GIWLTDCS) Trigger,GIWL,1/1/2021,None
-GIWL to Term Declined (GIWLTDCS),GIWL,1/1/2020,None
-GIWL Non-Member ACE,GIWL,1/1/2020,None
-GIWL Non-Member,GIWL,1/1/2020,None
-GIWL Member,GIWL,1/1/2020,None
-GIWL Lapsed Non-Complete (GIWLLCS),GIWL,1/1/2020,None
-GIWL Cross-Sell (GIWLCS),GIWL,1/1/2020,None
-GIWL 2nd Policy (GIWL2CS),GIWL,1/1/2020,None
-ExpressTerm Closed Leads,Term,1/1/2020,None
-Direct Mail Member Term Lapsed Non-Complete (D TERMLCS),Term,1/1/2020,None
+Accident Merkury Trigger - Non-Member,Accident,9/1/2022,
+GIWL Merkury Trigger,GIWL,9/1/2022,
+Direct Mail Member Term Merkury Trigger,Term,9/1/2022,
+MLTA Lapsed Non-Complete (MLTALCS) Trigger,Accident,9/1/2022,
+Direct Mail Member Term - Remark,Term,8/5/2022,
+Direct Mail Member Term Cross-Sell (D TERMCS),Term,12/28/2020,
+Direct Mail Member Term - Random,Term,1/21/2022,
+MLTA Member 5 Year (MLTA_5YR),Accident,1/1/2020,
+MLTA Member,Accident,1/1/2020,
+MLTA Lapsed Non-Complete (MLTALCS),Accident,1/1/2020,
+MLTA Cross-Sell (MLTACS),Accident,1/1/2020,
+Individual Direct Term Non-Member ACE,Term,1/1/2020,
+Individual Direct Term Non-Member,Term,1/1/2020,
+GIWL to Term Declined (GIWLTDCS) Trigger,GIWL,1/1/2021,
+GIWL to Term Declined (GIWLTDCS),GIWL,1/1/2020,
+GIWL Non-Member ACE,GIWL,1/1/2020,
+GIWL Non-Member,GIWL,1/1/2020,
+GIWL Member,GIWL,1/1/2020,
+GIWL Lapsed Non-Complete (GIWLLCS),GIWL,1/1/2020,
+GIWL Cross-Sell (GIWLCS),GIWL,1/1/2020,
+GIWL 2nd Policy (GIWL2CS),GIWL,1/1/2020,
+ExpressTerm Closed Leads,Term,1/1/2020,
+Direct Mail Member Term Lapsed Non-Complete (D TERMLCS),Term,1/1/2020,
 Direct Mail Member Term Cross Sell (D TERMCS),Term,1/1/2020,12/27/2020
-Direct Mail Member Term 2nd Policy (D TermUCS),Term,1/1/2020,None
-Direct Mail Member Term & MLTA Member (DTERM_MLTA_C),Term,1/1/2020,None
-Direct Mail Member Term,Term,1/1/2020,None
-Accident Member,Accident,1/1/2020,None
-Direct Mail Member Term - Follow-up,Term,4/28/2023,None
+Direct Mail Member Term 2nd Policy (D TermUCS),Term,1/1/2020,
+Direct Mail Member Term & MLTA Member (DTERM_MLTA_C),Term,1/1/2020,
+Direct Mail Member Term,Term,1/1/2020,
+Accident Member,Accident,1/1/2020,
+Direct Mail Member Term - Follow-up,Term,4/28/2023,

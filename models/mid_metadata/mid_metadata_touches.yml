@@ -1,0 +1,106 @@
+version: 2
+
+models:
+  - name: mid_metadata_touches
+    description: "{{ doc('mid_metadata_touches') }}
+
+
+{{ doc('keely_ledbetter') }}"
+    meta:
+        Owner: "Keely Ledbetter"
+        needs_data_discovery: False
+
+    columns:
+      - name: touch_id
+        description: " {{ doc('touch_id') }}"
+        tests:
+          - unique
+          - not_null
+          - dbt_utils.at_least_one
+      - name: touch_name
+        description: "{{ doc('touch_name') }}"
+        tests:
+          - not_null
+      - name: touch_start_date
+        description: "{{ doc('touch_start_date') }}"
+        tests:
+          - not_null
+      - name: campaign_finance_year
+        description: "{{ doc('campaign_finance_year') }}"
+      - name: campaign_number
+        description: "{{ doc('campaign_number') }}"
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 1
+              max_value: 18
+              where: "campaign_finance_year >= 2021
+                     AND LOWER(campaign_name) NOT LIKE '%kit request%'
+                     AND LOWER(marketing_channel_name) = 'mail'"
+      - name: campaign_name
+        description: "{{ doc('campaign_name') }}"
+      - name: marketing_subchannel_name
+        description: "{{ doc('marketing_subchannel_name') }}"
+        tests:
+          # This is an important filter downstream, so it needs to be a valid value
+          # TODO: Remove the exclusion of record with touch_id 31315 once Direct Mail has fixed it
+          - not_null:
+              where: "touch_id NOT IN ('31315') OR CURRENT_DATE > '2023-05-09'"
+      - name: marketing_subchannel_id
+        description: "{{ doc('marketing_subchannel_id') }}"
+        tests:
+          # if a marketing_subchannel_name exists (it's set as not_null), then it should have an id
+          - not_null:
+          # TODO: Remove the exclusion of record with touch_id 31315 once Direct Mail has fixed it
+              where: "touch_id NOT IN ('31315') OR CURRENT_DATE > '2023-05-09'"
+      - name: marketing_program_name
+        description: "{{ doc('marketing_program_name') }}"
+        tests:
+      - name: initiative_description
+        description: "{{ doc('initiative_description') }}"
+        tests:
+      - name: marketing_channel_name
+        description: "{{ doc('marketing_channel_name') }}"
+        tests:
+      - name: tactic_name
+        description: "{{ doc('tactic_name') }}"
+        tests:
+      - name: tactic_type_name
+        description: "{{ doc('tactic_type_name') }}"
+        tests:
+      - name: cell_name
+        description: "{{ doc('cell_name') }}"
+        tests:
+          - not_null
+      - name: variant_name
+        description: "{{ doc('variant_name') }}"
+        tests:
+          - not_null
+      - name: keycode_10th_position
+        description: "{{ doc('keycode_10th_position') }}"
+        tests:
+          # This field is not allowed to be null for Mail. If this test fails, consult the DSSE
+          # team, as metadata may need to be updated.
+          - not_null:
+              where: "LOWER(marketing_channel_name) = 'mail'"
+      - name: tactic_type
+        description: "{{ doc('tactic_type') }}"
+      - name: tactic_type_group
+        description: "{{ doc('tactic_type_group') }}"
+      - name: product_group
+        description: "{{ doc('product_group') }}"
+        tests:
+          # DSSE currently only plans to maintain non-null product mappings for 2021 and later,
+          # for direct mail campaigns that are not Kit Requests.
+          # If this test fails, check with the team about whether the tactic_name needs to be added
+          # to the staging_dsse_product_mapping table, or if those records should be excluded in the
+          # where condition of this test.
+          # TODO: Take out clause for tactic_name 'Direct Mail Member Term - Follow-up' after mapping is added
+          - not_null:
+              where: "campaign_finance_year >= 2021
+                AND LOWER(campaign_name) NOT LIKE '%kit request%'
+                AND LOWER(marketing_channel_name) = 'mail'
+                AND tactic_name != 'Direct Mail Member Term - Follow-up'"
+      - name: last_refreshed_at
+        description: "{{ doc('last_refreshed_at') }}"
+        tests:
+          - not_null
