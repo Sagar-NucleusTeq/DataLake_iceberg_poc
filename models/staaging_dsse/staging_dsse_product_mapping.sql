@@ -2,8 +2,7 @@
     alias='staging_dsse_product_mapping', 
     materialized='incremental',
     schema='staging_dsse',
-    incremental_strategy='merge',
-    unique_key=['tactic_name'],
+    incremental_strategy='insert_overwrite',
     file_format='iceberg',
     table_properties={
     'write.target-file-size-bytes': '268435456',

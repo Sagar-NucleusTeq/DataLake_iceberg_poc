@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: mde
     description: "{{ doc('fast') }}"
-    schema: landing_mde
+    schema: landing_dbt
     tables:
       - name: promotion_history
         tests:

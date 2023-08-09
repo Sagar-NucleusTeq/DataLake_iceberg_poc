@@ -1,0 +1,45 @@
+version: 2
+
+snapshots:
+  - name: product_mapping_history
+    config:
+      schema: 'staging_dsse'
+      tags:
+        - 'seed_path'
+        - 'early_snapshot'
+      # Adding this tag allows us to run resources derived form seeds separately
+    description: "{{ doc('staging_dsse_product_mapping_history') }}
+
+
+    {{ doc('naomi_hernandez') }}"
+    meta:
+        needs_data_discovery: False
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - tactic_name
+            - effective_date
+            - dbt_valid_from
+            - dbt_valid_to
+    columns:
+      - name: tactic_name
+        description: "{{ doc('tactic_name') }}"
+
+      - name: product_group
+        description: "{{ doc('product_group') }}"
+
+      - name: effective_date
+
+      - name: expiration_date
+        description: "{{ doc('expiration_date') }}"
+      - name: dbt_scd_id
+        description: "{{ doc('dbt_scd_id') }}"
+        test:
+          - not_null
+      - name: dbt_updated_at
+        description: "{{ doc('dbt_updated_at') }}"
+      - name: dbt_valid_from
+        description: "{{ doc('dbt_valid_from') }}"
+
+      - name: dbt_valid_to
+        description: "{{ doc('dbt_valid_to') }}"

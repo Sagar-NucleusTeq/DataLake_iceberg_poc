@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: staging_iv_scans
+    description: " {{ doc('staging_iv_scans') }}"
+    meta:
+      owner: Keely Ledbetter
+    columns:
+      - name: usps_scan_key
+        meta:
+          Security: "Internal"
+        description: " {{ doc('usps_scan_key') }}"
+      - name: service_type_identifier_code
+        meta:
+          Security: "Internal"
+      - name: serial_number
+        meta:
+          Security: "Internal"
+      - name: scanned_at_date
+        meta:
+          Security: "Internal"
+      - name: scanned_at
+        meta:
+          Security: "Internal"
+      - name: routing_code
+        meta:
+          Security: "Internal"
+
+      - name: operation_code
+        meta:
+          Security: "Internal"
+        tests:
+          - dbt_expectations.expect_column_value_lengths_to_equal:
+              value: 3
+
+      - name: mailer_id
+        meta:
+          Security: "Internal"
+      - name: imdb_tracking_code
+        meta:
+          Security: "Internal"
+      - name: facility_id_zip
+        description: "Zip code of the facility that scanned the mail item."
+        meta:
+          Security: "Internal"
+        tests:
+          - dbt_utils.at_least_one
+      - name: barcode_identifier_code
+        meta:
+          Security: "Internal"
+      - name: file_name
+        meta:
+          Security: "Internal"
+      - name: last_refreshed_at
+        description: "{{ doc('last_refreshed_at') }}"
+        meta:
+          Security: "Internal"

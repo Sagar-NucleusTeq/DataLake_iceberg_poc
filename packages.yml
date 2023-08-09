@@ -1,0 +1,5 @@
+packages:
+  # dbt_expectations: Great Expectations-style tests for DBT models
+  # documentation: https://hub.getdbt.com/calogica/dbt_expectations/latest/
+  - package: dbt-labs/dbt_utils
+    version: 0.8.0

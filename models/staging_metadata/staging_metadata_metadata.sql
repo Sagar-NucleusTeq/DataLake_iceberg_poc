@@ -1,9 +1,8 @@
 {{ config(
     alias='metadata', 
     materialized='incremental',
-    incremental_strategy='merge',
+    incremental_strategy='insert_overwrite',
     schema='staging_metadata',
-    unique_key = ['touch_id'],
     file_format='iceberg',
     iceberg_expire_snapshots='False',
     table_properties={
@@ -16,7 +15,7 @@ WITH max_record_timestamp AS (
 
     SELECT
       MAX(load_timestamp) AS last_loaded_at
-    FROM {{ source('metadata', 'metadata') }}
+    FROM {{ this }}
 
 )
 
@@ -61,7 +60,7 @@ SELECT
   CAST({{ source('metadata', 'metadata') }}.campaign_end_date AS DATE)    AS campaign_end_date,
   CAST({{ source('metadata', 'metadata') }}.finance_year AS INT)         AS campaign_finance_year,
   CAST({{ source('metadata', 'metadata') }}.finance_month AS INT)        AS campaign_finance_month,
-  {{ cleanse_text_field(source('metadata', 'metadata'),'campaign_keycode_camp_number') }} AS campaign_keycode_campaign_number,
+  FLOOR(RAND() * 9) AS campaign_keycode_campaign_number,
   CAST({{ source('metadata', 'metadata') }}.initiative_id AS INT)        AS initiative_id,
   {{ cleanse_text_field(source('metadata', 'metadata'),'initiative_description') }} AS initiative_description,
   CAST({{ source('metadata', 'metadata') }}.initiative_start_date AS DATE) AS initiative_start_date,
@@ -69,11 +68,11 @@ SELECT
   CAST({{ source('metadata', 'metadata') }}.marketing_program_id AS INT) AS marketing_program_id,
   {{ cleanse_text_field(source('metadata', 'metadata'),'marketing_program_name') }} AS marketing_program_name,
   {{ cleanse_text_field(source('metadata', 'metadata'),'marketing_program_description') }} AS marketing_program_description,
-  {{ cleanse_text_field(source('metadata', 'metadata'),'file_name') }} AS file_name,
-  CAST(metadata.load_timestamp AS TIMESTAMP) AS loaded_at,
+  'metadata' AS file_name,
+  '2023-08-09 10:19:34.163000 UTC' AS loaded_at,
   CURRENT_TIMESTAMP() AS last_refreshed_at
                     
 
 FROM {{ source('metadata', 'metadata') }}
-INNER JOIN max_record_timestamp
-  ON {{ source('metadata', 'metadata') }}.load_timestamp = max_record_timestamp.last_loaded_at
+-- INNER JOIN max_record_timestamp
+--   ON {{ source('metadata', 'metadata') }}.load_timestamp = max_record_timestamp.last_loaded_at

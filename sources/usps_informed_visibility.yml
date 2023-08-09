@@ -1,0 +1,92 @@
+version: 2
+
+sources:
+  - name: informed_visibility
+    description: "{{ doc('usps_informed_visibility') }}"
+    schema: landing_mde
+    tables:
+      - name: acronyms
+        tests:
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: [ "acronym",
+                             "definition",
+                             "file_name",
+                             "load_timestamp"
+              ]
+        meta:
+            automated: "No"
+            refreshed: "Manually - As Needed"
+      - name: data
+        tests:
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: [ "facility_id_zip",
+                             "operation_code",
+                             "scanned_at",
+                             "routing_code",
+                             "imdb_tracking_code",
+                             "file_name",
+                             "load_timestamp"
+              ]
+        meta:
+            automated: "Yes"
+            refreshed: "Every 2nd hour on minute 15"
+      - name: operationcodes
+        tests:
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: [ "sort_order",
+                             "machine_type",
+                             "operation_code",
+                             "equipment_description",
+                             "stop_the_clock_scan",
+                             "clearance_cutoff_time",
+                             "container",
+                             "handling_unit",
+                             "bundle",
+                             "piece",
+                             "piece_mail_type",
+                             "mail_level",
+                             "mail_phase",
+                             "process_description",
+                             "available_date",
+                             "file_name",
+                             "load_timestamp"
+              ]
+        meta:
+            automated: "No"
+            refreshed: "Manually - As Needed"
+      - name: servicetype_identifier
+        tests:
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: [ "class_of_mail",
+                             "address_correction_ancillary_service_option",
+                             "basic_or_non_automation_without_iv_mtr",
+                             "basic_or_non_automation_with_iv_mtr",
+                             "full_service_without_iv_mtr",
+                             "full_service_with_iv_mtr",
+                             "file_name",
+                             "load_timestamp"
+              ]
+        meta:
+            automated: "No"
+            refreshed: "Manually - As Needed"
+      - name: unexpected_operationcodes
+        tests:
+          - dbt_expectations.expect_table_columns_to_contain_set:
+              column_list: [ "status",
+                             "machine_type",
+                             "operation_code",
+                             "valid_linked_operation",
+                             "equipment_description",
+                             "stop_the_clock_scan",
+                             "clearance_cutofftime",
+                             "operation_type",
+                             "mail_type",
+                             "mail_level",
+                             "mail_phase",
+                             "process_description",
+                             "file_name",
+                             "load_timestamp"
+              ]
+        meta:
+            automated: "No"
+            refreshed: "Manually - As Needed"

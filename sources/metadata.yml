@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: metadata
     description: "{{ doc('metadata') }}"
-    schema: landing_mde
+    schema: landing_dbt
     tables:
       - name: metadata
         tests:

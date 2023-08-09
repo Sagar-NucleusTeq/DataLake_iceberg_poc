@@ -36,3 +36,9 @@ models:
     staging_fast:
       +materialized: table
 
+seeds:
+  +schema: landing_dsse
+  +tags:
+    - "seed_path" 
+  +fileformat: iceberg
+

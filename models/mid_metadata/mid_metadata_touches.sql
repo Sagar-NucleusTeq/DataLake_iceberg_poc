@@ -1,9 +1,8 @@
 {{ config(
     alias='touches', 
     materialized='incremental',
-    incremental_strategy='merge',
+    incremental_strategy='insert_overwrite',
     schema='mid_metadata',
-    unique_key = ['touch_id'],
     file_format='iceberg',
     iceberg_expire_snapshots='False',
     table_properties={

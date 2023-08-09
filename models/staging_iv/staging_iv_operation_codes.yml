@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: staging_iv_operation_codes
+    description: "{{ doc('staging_iv_operation_codes') }}
+
+
+    {{ doc('carrie_kaufmann') }}"
+    meta:
+        needs_data_discovery: "True"
+    columns:
+      - name: sort_order
+        meta:
+            needs_data_discovery: "True"
+      - name: machine_type
+        meta:
+            needs_data_discovery: "True"
+      - name: operation_code
+        description: "{{ doc('operation_code') }}"
+        tests:
+          - unique
+          - dbt_utils.at_least_one
+          - not_null
+          - dbt_expectations.expect_column_value_lengths_to_equal:
+                value: 3
+        meta:
+            needs_data_discovery: "False"
+      - name: equipment_description
+        meta:
+            needs_data_discovery: "True"
+      - name: stop_the_clock_scan
+        description: "{{ doc('stop_the_clock_scan') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: clearance_cutoff_time
+        meta:
+            needs_data_discovery: "True"
+      - name: container
+        meta:
+            needs_data_discovery: "True"
+      - name: handling_unit
+        meta:
+            needs_data_discovery: "True"
+      - name: bundle
+        meta:
+            needs_data_discovery: "True"
+      - name: piece
+        meta:
+            needs_data_discovery: "True"
+      - name: piece_mail_type
+        meta:
+            needs_data_discovery: "True"
+      - name: mail_level
+        description: "{{ doc('mail_level') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: mail_phase
+        meta:
+            needs_data_discovery: "True"
+      - name: process_description
+        meta:
+            needs_data_discovery: "True"
+      - name: available_date_text
+        meta:
+            needs_data_discovery: "True"
+      - name: file_name
+        description: "{{ doc('file_name') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: loaded_at
+        description: "{{ doc('loaded_at') }}"
+        meta:
+            needs_data_discovery: "False"
+      - name: last_refreshed_at
+        description: "{{ doc('last_refreshed_at') }}"
+        meta:
+            needs_data_discovery: "False"
+        tests:
+          - not_null

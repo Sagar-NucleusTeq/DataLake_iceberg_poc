@@ -1,7 +1,5 @@
 
 target/
 analyses/
-dbt_packages/
 logs/
-snapshots/
 tests/
