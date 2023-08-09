@@ -1,7 +1,7 @@
 {{ config(
     alias='promotion_history', 
     materialized='incremental',
-    incremental_strategy='insert_overwrite ',
+    incremental_strategy='insert_overwrite',
     schema='mid_mde',
     file_format='iceberg',
     iceberg_expire_snapshots='False',
@@ -100,7 +100,7 @@ SELECT
       THEN NULL
     ELSE 'TEST'
   END                                                                           AS test_role,
-  current_date()  AS last_refreshed_at
+  CAST(current_date() as TIMESTAMP) AS last_refreshed_at
 FROM glue_catalog.{{ ref('staging_mde_promotion_history') }}
 LEFT JOIN glue_catalog.{{ ref('mid_metadata_touches') }}
   ON glue_catalog.{{ ref('staging_mde_promotion_history') }}.touch_id = glue_catalog.{{ ref('mid_metadata_touches') }}.touch_id

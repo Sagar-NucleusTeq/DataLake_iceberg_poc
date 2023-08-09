@@ -35,6 +35,8 @@ models:
     # Config indicated by + and applies to all files under models/example/
     staging_fast:
       +materialized: table
+    staging_mde:
+      +materialized: table
 
 seeds:
   +schema: landing_dsse
