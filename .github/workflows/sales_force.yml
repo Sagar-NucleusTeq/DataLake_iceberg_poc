@@ -18,13 +18,8 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install Pendulum
-      run: |
-         pip install pendulum
-
     - name: Install Dependencies
       run: |
-          pip install simple-salesforce
           pip install pandas
 
     - name: Run Python script
