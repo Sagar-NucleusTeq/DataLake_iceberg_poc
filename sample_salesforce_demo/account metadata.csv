@@ -1,0 +1,9 @@
+activateable,associateEntityType,associateParentEntity,createable,custom,customSetting,deepCloneable,deletable,deprecatedAndHidden,feedEnabled,hasSubtypes,isInterface,isSubtype,keyPrefix,label,labelPlural,layoutable,mergeable,mruEnabled,name,queryable,replicateable,retrieveable,searchable,triggerable,undeletable,updateable,urls
+False,,,True,False,False,False,True,False,False,False,False,False,001,Account,Accounts,True,True,True,Account,True,True,True,True,False,True,True,/services/data/v57.0/sobjects/Account/describe/approvalLayouts
+False,,,True,False,False,False,True,False,False,False,False,False,001,Account,Accounts,True,True,True,Account,True,True,True,True,False,True,True,/services/data/v57.0/sobjects/Account/describe/compactLayouts
+False,,,True,False,False,False,True,False,False,False,False,False,001,Account,Accounts,True,True,True,Account,True,True,True,True,False,True,True,/services/data/v57.0/sobjects/Account/describe
+False,,,True,False,False,False,True,False,False,False,False,False,001,Account,Accounts,True,True,True,Account,True,True,True,True,False,True,True,/services/data/v57.0/sobjects/Account/describe/layouts
+False,,,True,False,False,False,True,False,False,False,False,False,001,Account,Accounts,True,True,True,Account,True,True,True,True,False,True,True,/services/data/v57.0/sobjects/Account/listviews
+False,,,True,False,False,False,True,False,False,False,False,False,001,Account,Accounts,True,True,True,Account,True,True,True,True,False,True,True,/services/data/v57.0/sobjects/Account/quickActions
+False,,,True,False,False,False,True,False,False,False,False,False,001,Account,Accounts,True,True,True,Account,True,True,True,True,False,True,True,/services/data/v57.0/sobjects/Account/{ID}
+False,,,True,False,False,False,True,False,False,False,False,False,001,Account,Accounts,True,True,True,Account,True,True,True,True,False,True,True,/services/data/v57.0/sobjects/Account
