@@ -18,9 +18,15 @@ jobs:
       with:
         python-version: 3.x
 
-    - name: Install dependencies
+    - name: Install Pendulum
       run: |
-        pip install simple-salesforce
+         pip install pendulum
+      working-directory: ${{ github.workspace }}
+
+    - name: Install Dependencies
+      run: |
+          pip install simple-salesforce
+          pip install pandas
       working-directory: ${{ github.workspace }}
 
     - name: Run Python script
