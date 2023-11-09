@@ -49,7 +49,7 @@ df_sobjects.to_csv('org_metadata_info.csv', index=False)
 # df_account_metadata.to_csv('account metadata.csv', index=False)
 
 # Amazon S3 settings
-s3_bucket_name = 'aaa-poc-sagar'
+s3_bucket_name = 'aaa-salesforce'
 s3_file_key = 'org_metadata_info.csv'
 
 # Upload the CSV file to Amazon S3
