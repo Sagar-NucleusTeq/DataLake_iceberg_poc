@@ -5,15 +5,11 @@ import boto3
 from botocore.exceptions import NoCredentialsError
 
 # Retrieve Salesforce credentials from GitHub repository secrets
-# username = os.environ.get('SALESFORCE_USERNAME')
-# password = os.environ.get('SALESFORCE_PASSWORD')
-# security_token = os.environ.get('SALESFORCE_SECURITY_TOKEN')
-# domain = "login"
-
-username = "sagarkalthiya-hhtd@force.com"
-password = "Sagar!@#$1234"
-security_token = "LpUYJUJUhUDlWlP899jdigzZk"
+username = os.environ.get('SALESFORCE_USERNAME')
+password = os.environ.get('SALESFORCE_PASSWORD')
+security_token = os.environ.get('SALESFORCE_SECURITY_TOKEN')
 domain = "login"
+
 
 session_id, instance = SalesforceLogin(username=username, password=password, security_token=security_token, domain=domain)
 sf = Salesforce(instance=instance, session_id=session_id)
@@ -53,6 +49,7 @@ s3_bucket_name = 'aaa-salesforce'
 s3_file_key = 'org_metadata_info.csv'
 
 # Upload the CSV file to Amazon S3
+# Upload the CSV file to Amazon S3
 def upload_to_s3(local_file, s3_bucket, s3_key):
     try:
         s3 = boto3.client('s3')
@@ -61,6 +58,18 @@ def upload_to_s3(local_file, s3_bucket, s3_key):
     except NoCredentialsError:
         print("AWS credentials not available.")
 
-# Upload the CSV file to S3
-upload_to_s3('org_metadata_info.csv', s3_bucket_name, s3_file_key)
+# Try to use AWS CLI credentials
+try:
+    # Upload the CSV file to S3
+    upload_to_s3('org_metadata_info.csv', s3_bucket_name, s3_file_key)
+except NoCredentialsError:
+    # If AWS CLI credentials not available, use environment variables
+    os.environ['AWS_ACCESS_KEY_ID'] =  os.environ.get('AWS_ACCESS_KEY_ID')
+    os.environ['AWS_SECRET_ACCESS_KEY'] = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+    try:
+        # Upload the CSV file to S3 using environment variables
+        upload_to_s3('org_metadata_info.csv', s3_bucket_name, s3_file_key)
+    except NoCredentialsError:
+        print("AWS credentials not available even with environment variables.")
 
