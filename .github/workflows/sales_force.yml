@@ -21,7 +21,8 @@ jobs:
     - name: Install Dependencies
       run: |
           pip install simple-salesforce \
-          pip install pandas
+          pip install pandas \
+          pip install boto3
 
     - name: Run Python script
       run: |
