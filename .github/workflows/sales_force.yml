@@ -33,3 +33,12 @@ jobs:
         SALESFORCE_SECURITY_TOKEN: ${{ secrets.SALESFORCE_SECURITY_TOKEN }}
         aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+
+    - name: upload csv to s3
+      run: |
+            # Upload your notebook code to S3
+            aws s3 cp salesforce_data.csv s3://aaa-salesforce/salesforce_data/
+      env:
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
