@@ -5,11 +5,15 @@ import boto3
 from botocore.exceptions import NoCredentialsError
 
 # Retrieve Salesforce credentials from GitHub repository secrets
-username = os.environ.get('SALESFORCE_USERNAME')
-password = os.environ.get('SALESFORCE_PASSWORD')
-security_token = os.environ.get('SALESFORCE_SECURITY_TOKEN')
-domain = "login"
+# username = os.environ.get('SALESFORCE_USERNAME')
+# password = os.environ.get('SALESFORCE_PASSWORD')
+# security_token = os.environ.get('SALESFORCE_SECURITY_TOKEN')
+# domain = "login"
 
+username = "sagarkalthiya-hhtd@force.com"
+password = "Sagar!@#$1234"
+security_token = "LpUYJUJUhUDlWlP899jdigzZk"
+domain = "login"
 
 session_id, instance = SalesforceLogin(username=username, password=password, security_token=security_token, domain=domain)
 sf = Salesforce(instance=instance, session_id=session_id)
@@ -58,18 +62,16 @@ def upload_to_s3(local_file, s3_bucket, s3_key):
     except NoCredentialsError:
         print("AWS credentials not available.")
 
-# Try to use AWS CLI credentials
-try:
-    # Upload the CSV file to S3
-    upload_to_s3('org_metadata_info.csv', s3_bucket_name, s3_file_key)
-except NoCredentialsError:
-    # If AWS CLI credentials not available, use environment variables
-    os.environ['AWS_ACCESS_KEY_ID'] =  os.environ.get('AWS_ACCESS_KEY_ID')
-    os.environ['AWS_SECRET_ACCESS_KEY'] = os.environ.get('AWS_SECRET_ACCESS_KEY')
-
+if not os.environ.get('AWS_ACCESS_KEY_ID') or not os.environ.get('AWS_SECRET_ACCESS_KEY'):
     try:
-        # Upload the CSV file to S3 using environment variables
-        upload_to_s3('org_metadata_info.csv', s3_bucket_name, s3_file_key)
+        aws_cli_config = boto3.session.Session().get_credentials()
+        if aws_cli_config and aws_cli_config.access_key and aws_cli_config.secret_key:
+            print("Using AWS CLI credentials")
+        else:
+            raise NoCredentialsError
     except NoCredentialsError:
-        print("AWS credentials not available even with environment variables.")
+        print("AWS credentials not available. Please set environment variables or configure AWS CLI.")
+
+# Upload the CSV file to S3
+upload_to_s3('org_metadata_info.csv', s3_bucket_name, s3_file_key)
 
