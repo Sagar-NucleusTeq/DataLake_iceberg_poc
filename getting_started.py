@@ -51,43 +51,43 @@ s3.upload_file(file_path, bucket_name, file_path)
 print(f"{file_path} uploaded to {bucket_name} on S3.")
 
 
-s3_url_file = f"s3://{bucket_name}/{file_path}"
+# s3_url_file = f"s3://{bucket_name}/{file_path}"
 
 
-df = wr.s3.read_csv(s3_url_file)
-print(df.head())
-print(df.shape)
-print(df.info())
-print("----------columns----------")
-list_of_cols = list(df.columns)
-print(list_of_cols)
+# df = wr.s3.read_csv(s3_url_file)
+# print(df.head())
+# print(df.shape)
+# print(df.info())
+# print("----------columns----------")
+# list_of_cols = list(df.columns)
+# print(list_of_cols)
 
 
-print(f"Reading data from:  ")
-print(f" converted into Pandas DataFrame.")
+# print(f"Reading data from:  ")
+# print(f" converted into Pandas DataFrame.")
 
-# Convert all columns to strings
-df = df.astype(str)
-print(f" columns coverted into string.")
+# # Convert all columns to strings
+# df = df.astype(str)
+# print(f" columns coverted into string.")
 
 
-# Cleanup table before create
-wr.catalog.delete_table_if_exists(database=database_name, table=iceberg_table_name)
+# # Cleanup table before create
+# wr.catalog.delete_table_if_exists(database=database_name, table=iceberg_table_name)
 
-table_location = f"s3://{bucket_name}/1-landing/{iceberg_table_name}"
-temp_table_path = f"s3://{bucket_name}/zzz-temp-dir/{iceberg_table_name}"
+# table_location = f"s3://{bucket_name}/1-landing/{iceberg_table_name}"
+# temp_table_path = f"s3://{bucket_name}/zzz-temp-dir/{iceberg_table_name}"
 
-print(f"destination_bucket_name : {bucket_name}")
-print(f"database_name : {database_name}")
-print(f"iceberg_table_name : {iceberg_table_name}")
-print(f"table_location : {table_location}")
-print(f"temp_table_path : {temp_table_path}")
+# print(f"destination_bucket_name : {bucket_name}")
+# print(f"database_name : {database_name}")
+# print(f"iceberg_table_name : {iceberg_table_name}")
+# print(f"table_location : {table_location}")
+# print(f"temp_table_path : {temp_table_path}")
 
-wr.athena.to_iceberg(
-    df=df,
-    database=database_name,
-    table=iceberg_table_name,
-    table_location=table_location,
-    temp_path=temp_table_path,
-)
-print(f"Iceberg table : {iceberg_table_name} : created successfully.")
+# wr.athena.to_iceberg(
+#     df=df,
+#     database=database_name,
+#     table=iceberg_table_name,
+#     table_location=table_location,
+#     temp_path=temp_table_path,
+# )
+# print(f"Iceberg table : {iceberg_table_name} : created successfully.")
