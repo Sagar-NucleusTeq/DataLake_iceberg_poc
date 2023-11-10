@@ -39,6 +39,7 @@ print(os.environ.get("AWS_ACCESS_KEY_ID"))
 print(f"{aws_secret_access_key}")
 print(f"{username}")
 print(f"{security_token}")
+print(f"{password}")
 
 # file_path = "salesforce_data.csv"
 
