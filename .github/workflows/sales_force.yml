@@ -35,6 +35,7 @@ jobs:
         SALESFORCE_USERNAME: ${{ secrets.SALESFORCE_USERNAME }}
         SALESFORCE_PASSWORD: ${{ secrets.SALESFORCE_PASSWORD }}
         SALESFORCE_SECURITY_TOKEN: ${{ secrets.SALESFORCE_SECURITY_TOKEN }}
+        region: "us-east-1"
 
 
 
