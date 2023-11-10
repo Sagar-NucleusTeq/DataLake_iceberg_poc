@@ -35,7 +35,7 @@ iceberg_table_name = "salesforce_demo"
 aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
 aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
-print(f"{aws_access_key_id}")
+print(os.environ.get("AWS_ACCESS_KEY_ID"))
 print(f"{aws_secret_access_key}")
 print(f"{username}")
 print(f"{security_token}")
