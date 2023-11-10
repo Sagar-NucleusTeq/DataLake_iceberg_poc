@@ -41,6 +41,7 @@ file_path = "salesforce_data.csv"
 # Create an S3 client
 s3 = boto3.client(
     "s3",
+    region_name="us-east-1",
     aws_access_key_id=aws_access_key_id,
     aws_secret_access_key=aws_secret_access_key,
 )
@@ -83,11 +84,11 @@ print(f"iceberg_table_name : {iceberg_table_name}")
 print(f"table_location : {table_location}")
 print(f"temp_table_path : {temp_table_path}")
 
-# wr.athena.to_iceberg(
-#     df=df,
-#     database=database_name,
-#     table=iceberg_table_name,
-#     table_location=table_location,
-#     temp_path=temp_table_path,
-# )
-# print(f"Iceberg table : {iceberg_table_name} : created successfully.")
+wr.athena.to_iceberg(
+    df=df,
+    database=database_name,
+    table=iceberg_table_name,
+    table_location=table_location,
+    temp_path=temp_table_path,
+)
+print(f"Iceberg table : {iceberg_table_name} : created successfully.")
